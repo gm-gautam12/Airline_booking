@@ -1,9 +1,11 @@
+/* This code snippet is setting up a logging configuration using the Winston library in JavaScript.
+Here's a breakdown of what each part is doing: */
 import { createLogger,format,transports } from "winston";
 
 
-const { combine, timestamp, label, printf } = format;
+const { combine, timestamp, printf } = format;
 
-const customFormat = printf(({level, message, label, timestamp}) => {
+const customFormat = printf(({level, message, timestamp}) => {
     return `${timestamp} : ${level}: ${message}`;
 });
 
