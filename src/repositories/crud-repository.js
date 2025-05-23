@@ -59,9 +59,15 @@ class CrudRepository {
             });
             return response;
         } catch (error) {
-            logger.error("something went wrong in crud Repo : getAll");
+            logger.error("something went wrong in crud Repo : update");
             throw error;
         }
     }
 
 };
+
+export default CrudRepository;
+
+// The above code defines a `CrudRepository` class that provides basic CRUD (Create, Read, Update, Delete) operations for a given Sequelize model.
+// The class constructor takes a model as an argument and assigns it to the `model` property.
+// Each method (create, destroy, get, getAll, update) interacts with the database using Sequelize methods.

@@ -1,16 +1,20 @@
-/* This code snippet is setting up a database connection using Sequelize, a popular Node.js ORM
-(Object-Relational Mapping) library for interacting with SQL databases. Here's a breakdown of what
-the code is doing: */
-'use strict';
-
 import fs from 'fs';
 import path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
-import process from 'process';
+import { fileURLToPath, pathToFileURL } from 'url';
+import configRaw from '../config/config.json' with { type: 'json' };
 
-const basename = path.basename(__filename);
+// Fix for __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Get env config
 const env = process.env.NODE_ENV || 'development';
-import config from '../config/config.json';
+const config = configRaw[env];
+
+if (!config || !config.dialect) {
+  throw new Error("Dialect needs to be explicitly supplied in config.json");
+}
 
 const db = {};
 
@@ -21,23 +25,25 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
+// ✅ FIX: Use `pathToFileURL` for safe dynamic ESM imports on Windows
+const modelFiles = fs
   .readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      !file.includes('.test.js')
-    );
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, DataTypes);
-    db[model.name] = model;
-  });
+  .filter(file =>
+    file.endsWith('.js') &&
+    file !== path.basename(__filename) &&
+    !file.includes('.test.js')
+  );
 
+for (const file of modelFiles) {
+  const modulePath = pathToFileURL(path.join(__dirname, file)).href;
+  const { default: modelDefiner } = await import(modulePath);
+  const model = modelDefiner(sequelize, DataTypes);
+  db[model.name] = model;
+}
+
+// Run associations
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
+  if (typeof db[modelName].associate === 'function') {
     db[modelName].associate(db);
   }
 });
