@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { infoController } from "../../controllers/index.js";
 
-import airplaneRoutes from "./airplane-routes.js";
+import airplaneRoutes from "../v1/airplane-routes.js";
 
 
 
