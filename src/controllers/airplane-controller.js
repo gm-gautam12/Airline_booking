@@ -1,5 +1,7 @@
 import { AirplaneService } from "../services/index.js";
 import { StatusCodes } from "http-status-codes";
+import { errorResponse, ApiResponse } from "../utils/common/index.js";
+
 
 const createAirplaneController = async(req, res) => {
     try {
@@ -8,19 +10,16 @@ const createAirplaneController = async(req, res) => {
             capacity: req.body.capacity,
         })
 
-        return res.status(StatusCodes.CREATED).json({
-            success: true,
-            message: "Airplane created successfully",
-            data: airplane,
-            error: {},
-        });
+        return res.status(StatusCodes.CREATED).json(
+            new ApiResponse(
+                StatusCodes.CREATED,
+                airplane,
+                "Airplane created successfully",
+            )
+        );
     } catch (error) {
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            success: false,
-            message: "Internal server error",
-            data: {},
-            error: error.message,
-        });
+        errorResponse.error = error;
+        return res.status(error.statusCode).json(errorResponse);
     }
 };
 
