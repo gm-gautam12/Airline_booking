@@ -75,6 +75,17 @@ const getAirplane = async(id) => {
 };
 
 
+/**
+ * The function `destroyAirplane` asynchronously deletes an airplane by its ID and handles errors
+ * appropriately.
+ * @param id - The `id` parameter in the `destroyAirplane` function represents the unique identifier of
+ * the airplane that you want to delete from the database. This identifier is used to locate the
+ * specific airplane record that needs to be removed.
+ * @returns The `destroyAirplane` function is returning the response from the
+ * `airplaneRepository.destroy(id)` call if it is successful. If an error occurs, it checks if the
+ * error status code is `NOT_FOUND`. If it is, it throws an `AppError` with the message "Requested
+ * airplane is not present to delete" and the error status code. If the error status code is not `
+ */
 const destroyAirplane = async(id) => {
     try {
         const response = await airplaneRepository.destroy(id);
@@ -87,6 +98,21 @@ const destroyAirplane = async(id) => {
     }
 }
 
+
+/**
+ * The function `updateAirplane` asynchronously updates airplane data and handles errors appropriately.
+ * @param data - The `data` parameter in the `updateAirplane` function represents the new information
+ * or changes that you want to update for a specific airplane. This data could include attributes such
+ * as the airplane's model, manufacturer, year of production, or any other relevant details that you
+ * wish to modify.
+ * @param id - The `id` parameter in the `updateAirplane` function is used to specify the unique
+ * identifier of the airplane that needs to be updated. This identifier is typically used to locate the
+ * specific airplane record in the database that requires updating.
+ * @returns The `updateAirplane` function is returning the updated airplane object if the update was
+ * successful. If the update count is 0, indicating that the requested airplane was not found, it
+ * throws an `AppError` with a status code of 404 (NOT_FOUND). If any other error occurs during the
+ * update process, it throws an `AppError` with a status code of 500 (INTERNAL
+ */
 const updateAirplane = async(data,id) => {
     try {
         const airplane = await airplaneRepository.update(data,id);
