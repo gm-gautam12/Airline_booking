@@ -12,4 +12,5 @@ router.get('/info', infoController);
 
 router.use('/airplanes', airplaneRoutes);
 
+
 export default router;

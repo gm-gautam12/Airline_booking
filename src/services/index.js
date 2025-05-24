@@ -1,7 +1,17 @@
-import { createAirplane as AirplaneService }  from "../services/airplane-service.js";
+import { createAirplane as AirplaneService,
+         getAirplanes as getAirplanesService, 
+         getAirplane as getAirplaneService,
+         destroyAirplane as destroyAirplaneService,
+         updateAirplane as updateAirplaneService
+
+}  from "../services/airplane-service.js";
 
 
 
 export {
-    AirplaneService
+    AirplaneService,
+    getAirplanesService,
+    getAirplaneService,
+    destroyAirplaneService,
+    updateAirplaneService
 };
