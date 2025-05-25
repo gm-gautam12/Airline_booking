@@ -9,7 +9,6 @@ export const up = async (queryInterface, Sequelize) => {
       table: 'cities',
       field: 'id',
     },
-    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   });
 
