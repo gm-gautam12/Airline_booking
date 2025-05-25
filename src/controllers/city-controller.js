@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { errorResponse, ApiResponse } from "../utils/common/index.js";
-import { createCityService } from "../services/index.js";
+import { createCityService, destroyCityService, updateCityService } from "../services/index.js";
 
 //POST
 
@@ -24,6 +24,46 @@ const createCityController = async (req, res) => {
 };
 
 
+const destroyCityController = async (req, res) => {
+  try {
+    const city = await destroyCityService(req.params.id);
+    return res
+      .status(StatusCodes.OK)
+      .json(
+        new ApiResponse(
+          StatusCodes.OK,
+          city,
+          "City deleted successfully"
+        )
+      );
+  } catch (error) {
+    errorResponse.error = error;
+    return res.status(error.statusCode).json(errorResponse);
+  }
+};
+
+
+const updateCityController = async (req, res) => {
+  try {
+    const city = await updateCityService(req.body, req.params.id);
+    return res
+      .status(StatusCodes.OK)
+      .json(
+        new ApiResponse(
+          StatusCodes.OK,
+          city,
+          "City details updated successfully"
+        )
+      );
+  } catch (error) {
+    errorResponse.error = error;
+    return res.status(error.statusCode).json(errorResponse);
+  }
+};
+
+
 export {
-    createCityController
+    createCityController,
+    destroyCityController,
+    updateCityController
 };

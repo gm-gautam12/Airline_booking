@@ -7,7 +7,7 @@ import {
   updateAirplaneController
 } from "./airplane-controller.js";
 
-import { createCityController } from "./city-controller.js";
+import { createCityController, destroyCityController, updateCityController } from "./city-controller.js";
 
 
 
@@ -19,6 +19,7 @@ export {
     getAirplaneController,
     destroyAirplaneController,
     updateAirplaneController,
-    createCityController
-
+    createCityController,
+    destroyCityController,
+    updateCityController
  };

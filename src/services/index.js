@@ -6,7 +6,11 @@ import { createAirplane as AirplaneService,
 
 }  from "../services/airplane-service.js";
 
-import { createCity as createCityService } from "./city-service.js";
+import {
+  createCity as createCityService,
+  destroyCity as destroyCityService,
+  updateCity as updateCityService
+} from "./city-service.js";
 
 export {
     AirplaneService,
@@ -14,5 +18,7 @@ export {
     getAirplaneService,
     destroyAirplaneService,
     updateAirplaneService,
-    createCityService
+    createCityService,
+    destroyCityService,
+    updateCityService
 };
