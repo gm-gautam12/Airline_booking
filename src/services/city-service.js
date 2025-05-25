@@ -52,9 +52,33 @@ const updateCity = async(data,id) => {
     }
 }
 
+const getCities = async() => {
+    try {
+        const cities = await cityRepository.getAll();
+        return cities;
+    } catch (error) {
+        throw new AppError("Something went wrong while fetching cities", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+};
+
+
+const getCity = async(id) => {
+    try {
+        const city = await cityRepository.get(id);
+        return city;
+    } catch (error) {
+        if(error.statusCode === StatusCodes.NOT_FOUND) {
+            throw new AppError("Requested city is not present",error.statusCode);
+        }
+        throw new AppError("Something went wrong while fetching city", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+};
+
 
 export {
     createCity,
     destroyCity,
-    updateCity
+    updateCity,
+    getCities,
+    getCity
 };

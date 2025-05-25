@@ -11,6 +11,8 @@ import {
   createCityController,
   destroyCityController,
   updateCityController,
+  getCitiesController,
+  getCityController
 } from "./city-controller.js";
 
 
@@ -25,5 +27,7 @@ export {
     updateAirplaneController,
     createCityController,
     destroyCityController,
-    updateCityController
+    updateCityController,
+    getCitiesController,
+    getCityController
  };

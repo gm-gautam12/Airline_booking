@@ -9,7 +9,9 @@ import { createAirplane as AirplaneService,
 import {
   createCity as createCityService,
   destroyCity as destroyCityService,
-  updateCity as updateCityService
+  updateCity as updateCityService,
+  getCities as getCitiesService,
+  getCity as getCityService
 } from "./city-service.js";
 
 export {
@@ -20,5 +22,7 @@ export {
     updateAirplaneService,
     createCityService,
     destroyCityService,
-    updateCityService
+    updateCityService,
+    getCitiesService,
+    getCityService
 };
