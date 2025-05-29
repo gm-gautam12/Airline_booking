@@ -12,13 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api',apiRoutes);
 
-app.listen(PORT, async() => {
+app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
-    // const city = await City.findByPk(12);
-    // //await city.createAirport({name: 'Prayagraj Airport',code: 'PYJ'});
-    // await City.destroy({
-    //     where:{
-    //         id:12
-    //     }
-    // })
 })
