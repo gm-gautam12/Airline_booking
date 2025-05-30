@@ -15,6 +15,14 @@ import {
   getCityController
 } from "./city-controller.js";
 
+import {
+  createAirportController,
+  getAirportsController,
+  getAirportController,
+  destroyAirportController,
+  updateAirportController
+} from "./airport-controller.js";
+
 
 
 
@@ -29,5 +37,10 @@ export {
     destroyCityController,
     updateCityController,
     getCitiesController,
-    getCityController
+    getCityController,
+    createAirportController,
+    getAirportsController,
+    getAirportController,
+    destroyAirportController,
+    updateAirportController
  };

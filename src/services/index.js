@@ -1,8 +1,9 @@
-import { createAirplane as AirplaneService,
-         getAirplanes as getAirplanesService, 
-         getAirplane as getAirplaneService,
-         destroyAirplane as destroyAirplaneService,
-         updateAirplane as updateAirplaneService
+import { 
+  createAirplane as AirplaneService,
+  getAirplanes as getAirplanesService, 
+  getAirplane as getAirplaneService,
+  destroyAirplane as destroyAirplaneService,
+  updateAirplane as updateAirplaneService
 
 }  from "../services/airplane-service.js";
 
@@ -14,6 +15,14 @@ import {
   getCity as getCityService
 } from "./city-service.js";
 
+import { 
+  createAirport as createAirportService,
+  updateAirport as updateAirportService,
+  getAirports as getAirportsService,
+  getAirport as getAirportService,
+  destroyAirport as destroyAirportService,
+} from "./airport-serivce.js";
+
 export {
     AirplaneService,
     getAirplanesService,
@@ -24,5 +33,10 @@ export {
     destroyCityService,
     updateCityService,
     getCitiesService,
-    getCityService
+    getCityService,
+    createAirportService,
+    updateAirportService,
+    getAirportsService,
+    getAirportService,
+    destroyAirportService
 };
