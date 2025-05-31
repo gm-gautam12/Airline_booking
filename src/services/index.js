@@ -23,6 +23,8 @@ import {
   destroyAirport as destroyAirportService,
 } from "./airport-serivce.js";
 
+import { createFlight as createFlightService } from "./flight-service.js";
+
 export {
     AirplaneService,
     getAirplanesService,
@@ -38,5 +40,6 @@ export {
     updateAirportService,
     getAirportsService,
     getAirportService,
-    destroyAirportService
+    destroyAirportService,
+    createFlightService
 };

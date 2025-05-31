@@ -25,11 +25,11 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     airplaneId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     departureAirportId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     arrivalAirportId: {
@@ -48,7 +48,7 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    boradingGate: {
+    boardingGate: {
       type: DataTypes.STRING
     },
     totalSeats: {

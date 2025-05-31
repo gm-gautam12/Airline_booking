@@ -1,8 +1,6 @@
 import express from 'express';
 import { PORT } from './config/index.js';
 import apiRoutes from './routes/index.js';
-import db from './models/index.js';
-const City = db.city;
 
 
 const app = express();
