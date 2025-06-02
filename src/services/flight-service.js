@@ -14,7 +14,6 @@ const createFlight = async(data) => {
         const flight = await flightReposiory.create(data);
         return flight;
     } catch (error) {
-        console.log("Error while creating flight", error);
         if(error.name === "SequelizeValidationError") {
             let explanation = [];
             error.errors.forEach((err) => {
