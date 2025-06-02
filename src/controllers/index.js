@@ -24,7 +24,8 @@ import {
 } from "./airport-controller.js";
 
 import {
-  createFlightController
+  createFlightController,
+  getAllFlightsController
 } from "./flight-controller.js";
 
 
@@ -47,5 +48,6 @@ export {
     getAirportController,
     destroyAirportController,
     updateAirportController,
-    createFlightController
+    createFlightController,
+    getAllFlightsController
  };

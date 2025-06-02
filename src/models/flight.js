@@ -51,7 +51,7 @@ export default (sequelize, DataTypes) => {
     boardingGate: {
       type: DataTypes.STRING
     },
-    totalSeats: {
+    totalSeats: {   // available seats
       type: DataTypes.INTEGER,
       allowNull: false,
     }
