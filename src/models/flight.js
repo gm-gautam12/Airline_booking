@@ -10,12 +10,15 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Airplane, {
         foreignKey: 'airplaneId',
+        as: 'airplaneDetails'
       });
       this.belongsTo(models.Airport, {
         foreignKey: 'departureAirportId',
+        as: 'departureAirportDetails'
       });
       this.belongsTo(models.Airport, {
         foreignKey: 'departureAirportId',
+        as: 'arrivalAirportDetails'
       });
     }
   }
