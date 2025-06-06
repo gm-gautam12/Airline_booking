@@ -48,6 +48,17 @@ const validateFlightCreateRequest = (req, res, next) => {
 };
 
 
+const validateUpdateSeatsRequest = (req, res, next) => {
+    if(!req.body.seats) {
+        errorResponse.message = "Something went wrong while updating flight";
+        errorResponse.error = new AppError(['Seats not found in the incoming request'], StatusCodes.BAD_REQUEST);
+        return res.status(StatusCodes.BAD_REQUEST).json(errorResponse);
+    }
+    next();
+};
+
+
 export {
-    validateFlightCreateRequest
+    validateFlightCreateRequest,
+    validateUpdateSeatsRequest
 };

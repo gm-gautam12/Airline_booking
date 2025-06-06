@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import { createFlightController,getAllFlightsController,getFlightController } from '../../controllers/index.js';
+import { createFlightController,getAllFlightsController,getFlightController,updateSeatsController } from '../../controllers/index.js';
 
-import { validateFlightCreateRequest } from '../../middlewares/index.js';
+import { validateFlightCreateRequest,validateUpdateSeatsRequest } from '../../middlewares/index.js';
 
 const router = Router();
 
@@ -16,5 +16,8 @@ router.get('/',getAllFlightsController);
 
 /// /api/v1/flights/:id GET
 router.get('/:id',getFlightController);
+
+/// /api/v1/flights/seats PATCH
+router.patch('/:id/seats',validateUpdateSeatsRequest,updateSeatsController);
 
 export default router;

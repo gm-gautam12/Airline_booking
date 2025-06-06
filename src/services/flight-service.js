@@ -97,10 +97,20 @@ const getFlight = async(id) => {
     }
 };
 
+const updateRemainingSeats = async(data) => {
+    try {
+        const response = await flightReposiory.updateRemainingSeats(data.flightId, data.seats, data.decrease);
+        return response;
+    } catch (error) {
+        throw new AppError("Something went wrong while updating remaining seats", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 
 export {
     createFlight,
     getAllFlights,
-    getFlight
+    getFlight,
+    updateRemainingSeats
 };
 

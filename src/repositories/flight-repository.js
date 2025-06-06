@@ -2,6 +2,7 @@ import CrudRepository from "./crud-repository.js";
 import db from "../models/index.js";
 import { Sequelize } from "sequelize";
 const { Flight, Airplane,Airport, city } = db;  
+import {addRowlockOnFlights} from "./queries.js";
 
 
 class FlightRepository extends CrudRepository {
@@ -48,6 +49,20 @@ class FlightRepository extends CrudRepository {
             ],
         });
         return response;
+    }
+
+
+    async updateRemainingSeats(flightId,seats, decrease = true) {
+        await db.sequelize.query(addRowlockOnFlights(flightId));  // ROW LEVEL LOCKING
+        const flight = await Flight.findByPk(flightId);
+        if(decrease) {
+            await flight.decrement('totalSeats', {by:seats});
+        }else {
+            await flight.increment('totalSeats', {by:seats});
+        }
+
+        await flight.save();
+        return flight;
     }
 
 }
