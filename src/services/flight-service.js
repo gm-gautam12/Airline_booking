@@ -85,8 +85,22 @@ const getAllFlights = async(query) => {
 };
 
 
+const getFlight = async(id) => {
+    try {
+        const flight = await flightReposiory.get(id);
+        return flight;
+    } catch (error) {
+        if(error.statusCode === StatusCodes.NOT_FOUND) {
+            throw new AppError("Flight you requested not found", StatusCodes.NOT_FOUND);
+        }
+        throw new AppError("Something went wrong while fetching flight", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+};
+
+
 export {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight
 };
 

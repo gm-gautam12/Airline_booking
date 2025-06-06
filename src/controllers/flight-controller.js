@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { errorResponse, ApiResponse } from "../utils/common/index.js";
-import { createFlightService,getAllFlightsService } from "../services/index.js";
+import { createFlightService,getAllFlightsService,getFlightService } from "../services/index.js";
 
 
 const createFlightController = async (req, res) => {
@@ -40,13 +40,29 @@ const getAllFlightsController = async(req,res) => {
             )
         );
     } catch (error) {
-        console.log(error);
          errorResponse.error = error;
+        return res.status(error.statusCode).json(errorResponse);
+    }
+}
+
+const getFlightController = async(req,res) => {
+    try {
+        const flight = await getFlightService(req.params.id);
+        return res.status(StatusCodes.OK).json(
+            new ApiResponse(
+                StatusCodes.OK,
+                flight,
+                "Flight fetched successfully"
+            )
+        );
+    } catch (error) {
+        errorResponse.error = error;
         return res.status(error.statusCode).json(errorResponse);
     }
 }
 
 export {
     createFlightController,
-    getAllFlightsController
+    getAllFlightsController,
+    getFlightController
 };
